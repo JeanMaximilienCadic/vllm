@@ -1,0 +1,37 @@
+version: "3.9"
+x-default: &default
+  volumes:
+    - .:/workspace
+  working_dir: /workspace
+  tty: true
+  restart: always
+  environment:
+    - PYTHONPATH=/workspace
+    - PUID=1000
+    - PGID=1000
+  ports:
+    - 8000:8000
+  uts: host
+  shm_size: '24gb'
+
+x-sandbox_gpu: &gpu
+  <<: *default
+  deploy:
+    resources:
+      reservations:
+        devices:
+          - driver: nvidia
+            count: 2
+            capabilities: [ gpu ]
+
+services:
+  sandbox:
+    <<: *default
+    image: cadic/vllm
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: sandbox
+    entrypoint: python -m vllm.entrypoints.openai.api_server --model TomGrc/FusionNet_7Bx2_MoE_14B  --tensor-parallel-size 2 --dtype half
+    # entrypoint: python -m vllm.entrypoints.openai.api_server --model microsoft/phi-2  --tensor-parallel-size 2
+    # entrypoint: python -m vllm.entrypoints.openai.api_server --model microsoft/phi-2
