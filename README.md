@@ -18,6 +18,8 @@ Easy, fast, and cheap LLM serving for everyone
 
 **The Second vLLM Bay Area Meetup (Jan 31st 5pm-7:30pm PT)**
 
+This is a fork from https://github.com/vllm-project/vllm
+
 We are thrilled to announce our second vLLM Meetup!
 The vLLM team will share recent updates and roadmap.
 We will also have vLLM collaborators from IBM coming up to the stage to discuss their insights on LLM optimizations.
@@ -83,20 +85,9 @@ vLLM seamlessly supports many Hugging Face models, including the following archi
 Install vLLM with pip or [from source](https://vllm.readthedocs.io/en/latest/getting_started/installation.html#build-from-source):
 
 ```bash
-pip install vllm
+docker compose build
+docker compose up
 ```
-
-## Getting Started
-
-Visit our [documentation](https://vllm.readthedocs.io/en/latest/) to get started.
-- [Installation](https://vllm.readthedocs.io/en/latest/getting_started/installation.html)
-- [Quickstart](https://vllm.readthedocs.io/en/latest/getting_started/quickstart.html)
-- [Supported Models](https://vllm.readthedocs.io/en/latest/models/supported_models.html)
-
-## Contributing
-
-We welcome and value any contributions and collaborations.
-Please check out [CONTRIBUTING.md](./CONTRIBUTING.md) for how to get involved.
 
 ## Citation
 
